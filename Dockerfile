@@ -1,13 +1,7 @@
 FROM nginx:latest
 
-EXPOSE 8080
+EXPOSE 80
 
-COPY ./entrypoint.sh /filltemplate.sh
-RUN chmod +x /filltemplate.sh
-
-RUN mkdir /templates
-COPY ./nginx.tmpl /templates/nginx.tmpl
-
-ENTRYPOINT ["/filltemplate.sh"]
+COPY ./nginx.tmpl /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
